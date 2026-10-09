@@ -37,8 +37,7 @@ stock_value, days_since_last_movement, payment_delay_days, is_overdue,
 and customer-level aggregates (first order, last order, order count, total spend).
 
 ## Validation
-Checks were run for negative quantities, missing keys, duplicate product-branch rows
-and invalid dates. Results and decisions are in docs/validation_log.csv.
+Checks were run for negative quantities, missing keys between tables, duplicate product-branch rows and invalid dates. Issues found were fixed during cleaning
 
 ## Next steps
 ABC classification, slow and dead stock, inventory turnover, overstock and understock detection.
