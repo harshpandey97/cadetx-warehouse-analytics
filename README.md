@@ -7,6 +7,7 @@
 <img src="assets/banner.svg" alt="CadetX Warehouse Analytics banner" width="900"/>
 <br/>
 
+
 ![Last commit](https://img.shields.io/github/last-commit/HARSHPANDEY9756/cadetx-warehouse-analytics?style=for-the-badge&color=0969da)
 ![Stars](https://img.shields.io/github/stars/HARSHPANDEY9756/cadetx-warehouse-analytics?style=for-the-badge&color=8250df)
 ![Top language](https://img.shields.io/github/languages/top/HARSHPANDEY9756/cadetx-warehouse-analytics?style=for-the-badge&color=2da44e)
