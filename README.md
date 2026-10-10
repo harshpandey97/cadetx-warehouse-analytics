@@ -1,175 +1,207 @@
-CadetX — Heavy Supplier, Inventory & Warehouse Analytics
 
-A 12-week data science project focused on supplier performance, inventory optimization, warehouse operations, and demand forecasting.
 
-The goal is to reduce dead stock, prevent stockouts, and improve supplier reliability across six warehouses.
 
-Project Overview
 
-MetricDescriptionTime Period2019–2025Customers500 across 16 statesSuppliers8 vendorsProducts30 SKUsWarehouses6 branchesPurchase Orders24,000Pending Deliveries2,370 (9.9%)Data Completeness99.6% reported 
+<div align="center">
 
-Data quality note: The dataset summary reports 2,370 missing values, mostly related to purchase-order dates. Validate this figure against the actual dataset before drawing conclusions.
+<img src="assets/banner.svg" alt="CadetX Warehouse Analytics banner" width="900"/>
+<br/>
 
-Dataset and Data Model
+![Last commit](https://img.shields.io/github/last-commit/HARSHPANDEY9756/cadetx-warehouse-analytics?style=for-the-badge&color=0969da)
+![Stars](https://img.shields.io/github/stars/HARSHPANDEY9756/cadetx-warehouse-analytics?style=for-the-badge&color=8250df)
+![Top language](https://img.shields.io/github/languages/top/HARSHPANDEY9756/cadetx-warehouse-analytics?style=for-the-badge&color=2da44e)
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![SQL Server](https://img.shields.io/badge/SQL%20Server-T--SQL-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power%20BI-Dashboards-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
 
-The project connects customers, products, suppliers, sales, purchase orders, invoices, payments, branches, inventory, and stock movements.
+</div>
 
-erDiagram CUSTOMERS ||--o{ SALES_ORDERS_HEADER : places SALES_ORDERS_HEADER ||--|{ SALES_ORDERS_LINES : contains PRODUCTS ||--o{ SALES_ORDERS_LINES : sold_as SALES_ORDERS_HEADER ||--o| INVOICES : billed_by INVOICES ||--o{ PAYMENTS : settled_by SUPPLIERS ||--o{ PURCHASE_ORDERS_HEADER : receives PURCHASE_ORDERS_HEADER ||--|{ PURCHASE_ORDERS_LINES : contains PRODUCTS ||--o{ PURCHASE_ORDERS_LINES : bought_as BRANCHES ||--o{ INVENTORY_MASTER : stocks PRODUCTS ||--o{ INVENTORY_MASTER : tracked_in BRANCHES ||--o{ STOCK_LEDGER : records PRODUCTS ||--o{ STOCK_LEDGER : moves 
+---
 
-12-Week Project Roadmap
+## About the project
 
-[ ] Week 1 — Dataset exploration and exploratory data analysis
+A 12-week applied data project on heavy-equipment supply-chain data. The goal is to **reduce dead stock, prevent stockouts, and improve supplier reliability** across six warehouses.
 
-[ ] Week 2 — Data cleaning and missing-value treatment
+The project covers supplier performance, inventory optimisation, warehouse operations, and demand forecasting.
 
-[ ] Week 3 — SQL database design and data validation
+## Dataset at a glance
 
-[ ] Week 4 — Supplier performance analysis
+<div align="center">
+<img src="assets/dataset_size.svg" alt="Dataset size bar chart" width="760"/>
+</div>
 
-[ ] Week 5 — Inventory health and dead-stock analysis
+| Item | Value |
+|---|---|
+| Time period | 2019 – 2024 |
+| Customers | 500 |
+| Suppliers | 8 |
+| Products (SKUs) | 30 |
+| Warehouses (branches) | 6 |
+| Purchase orders | 24,000 |
 
-[ ] Week 6 — Stockout and replenishment analysis
+<div align="center">
+<img src="assets/po_status.svg" alt="Purchase orders received vs pending" width="760"/>
+</div>
 
-[ ] Week 7 — Warehouse performance comparison
+> **Data note:** 2,370 purchase orders (9.9%) have no received date yet. They are flagged as *pending* and left blank, not filled in. The validation checks are recorded in `docs/validation_log.csv`.
 
-[ ] Week 8 — Demand forecasting
+<div align="center">
+<img src="assets/movement_mix.svg" alt="Stock movement mix" width="760"/>
+</div>
 
-[ ] Week 9 — Inventory optimization models
+## Data model
 
-[ ] Week 10 — KPI dashboard development in Power BI
+```mermaid
+erDiagram
+    CUSTOMERS ||--o{ SALES_ORDERS_HEADER : places
+    SALES_ORDERS_HEADER ||--|{ SALES_ORDERS_LINES : contains
+    PRODUCTS ||--o{ SALES_ORDERS_LINES : sold_as
+    SALES_ORDERS_HEADER ||--o| INVOICES : billed_by
+    INVOICES ||--o{ PAYMENTS : settled_by
+    SUPPLIERS ||--o{ PURCHASE_ORDERS_HEADER : receives
+    PURCHASE_ORDERS_HEADER ||--|{ PURCHASE_ORDERS_LINES : contains
+    PRODUCTS ||--o{ PURCHASE_ORDERS_LINES : bought_as
+    BRANCHES ||--o{ INVENTORY_MASTER : stocks
+    PRODUCTS ||--o{ INVENTORY_MASTER : tracked_in
+    BRANCHES ||--o{ STOCK_LEDGER : records
+    PRODUCTS ||--o{ STOCK_LEDGER : moves
+```
 
-[ ] Week 11 — Model evaluation and business recommendations
+## Roadmap
 
-[ ] Week 12 — Final report, documentation, and deployment
+<div align="center">
+<img src="assets/roadmap_progress.svg" alt="Roadmap progress bar" width="760"/>
+</div>
 
-These are Markdown checkboxes. They can be ticked in GitHub's editor, but they do not provide a persistent interactive progress dashboard.
+- [ ] Week 1 — Dataset exploration and exploratory data analysis
+- [ ] Week 2 — Data cleaning and missing-value treatment
+- [ ] Week 3 — SQL database design and data validation
+- [ ] Week 4 — Supplier performance analysis
+- [ ] Week 5 — Inventory health and dead-stock analysis
+- [ ] Week 6 — Stockout and replenishment analysis
+- [ ] Week 7 — Warehouse performance comparison
+- [ ] Week 8 — Demand forecasting
+- [ ] Week 9 — Inventory optimisation models
+- [ ] Week 10 — KPI dashboard development in Power BI
+- [ ] Week 11 — Model evaluation and business recommendations
+- [ ] Week 12 — Final report, documentation, and deployment
 
-Key KPIs
+## Key KPIs
 
-Supplier on-time delivery rate
+KPIs are calculated from validated source data. No unverified results are reported.
 
-Purchase-order fulfillment rate
+| Area | KPIs |
+|---|---|
+| Supplier | On-time delivery rate · Fulfilment rate · Average lead time · Defect rate · Reliability score |
+| Inventory | Turnover ratio · Days of inventory on hand · Stockout rate · Dead-stock value · Carrying cost · Reorder-point accuracy |
+| Warehouse | Fulfilment rate · Order cycle time · Backorder rate · Branch utilisation · Fill rate |
+| Finance | Outstanding invoice value · Days sales outstanding · Purchase-order ageing |
+| Forecasting | Forecast accuracy |
 
-Average supplier lead time
+## Models to build
 
-Supplier defect rate
+- Demand forecasting (statistical and machine-learning methods)
+- Supplier reliability scoring
+- Inventory segmentation using ABC analysis
+- Reorder-point and safety-stock estimation
+- Stockout risk prediction
+- Dead-stock identification
+- Inventory optimisation recommendations
 
-Inventory turnover ratio
+## Quick start
 
-Days of inventory on hand
+**1. Clone the repository**
 
-Stockout rate
+```bash
+git clone https://github.com/HARSHPANDEY9756/cadetx-warehouse-analytics.git
+cd cadetx-warehouse-analytics
+```
 
-Dead-stock value
+**2. Create a virtual environment**
 
-Inventory carrying cost
-
-Reorder-point accuracy
-
-Forecast accuracy
-
-Warehouse fulfillment rate
-
-Order cycle time
-
-Backorder rate
-
-Customer order fulfillment rate
-
-Outstanding invoice value
-
-Days sales outstanding
-
-Branch-level inventory utilization
-
-Fill rate
-
-Purchase-order aging
-
-KPIs will be calculated from validated source data; no unverified results are assumed.
-
-Models to Build
-
-Demand forecasting using statistical and machine-learning methods
-
-Supplier reliability scoring
-
-Inventory segmentation using ABC analysis
-
-Reorder-point and safety-stock estimation
-
-Stockout risk prediction
-
-Dead-stock identification
-
-Inventory optimization recommendations
-
-Quick Start
-
-1. Clone the repository
-
-git clone https://github.com/HARSHPANDEY9756/cadetx-warehouse-analytics.git cd cadetx-warehouse-analytics 
-
-2. Create a virtual environment
-
-python -m venv .venv 
+```bash
+python -m venv .venv
+```
 
 Windows PowerShell:
 
-.\.venv\Scripts\Activate.ps1 
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
 
-3. Install dependencies
+**3. Install dependencies**
 
-python -m pip install --upgrade pip pip install pandas numpy scikit-learn statsmodels matplotlib seaborn jupyter sqlalchemy 
+```bash
+python -m pip install --upgrade pip
+pip install pandas numpy scikit-learn statsmodels matplotlib seaborn jupyter sqlalchemy
+```
 
-4. Explore the dataset
+**4. Explore the dataset**
 
-jupyter notebook notebooks/week-01-eda.ipynb 
+```bash
+jupyter notebook notebooks/week-01-eda.ipynb
+```
 
-5. Run the data-cleaning pipeline
+**5. Run the data-cleaning pipeline**
 
-python src/data_cleaning.py 
+```bash
+python src/data_cleaning.py
+```
 
-Prerequisites: Python 3.8 or later, the project dataset, and the notebook and script files referenced above. If your project uses SQL Server, configure the database connection separately.
+**6. Rebuild the README charts (optional)**
 
-Technology Stack
+Edit `assets/metrics.json`, then run:
 
-Programming: Python
+```bash
+python scripts/build_readme_assets.py
+```
 
-Data analysis: Pandas, NumPy
+The charts also rebuild automatically on GitHub when `metrics.json` changes (see `.github/workflows/update-readme-assets.yml`).
 
-Machine learning: Scikit-learn, Statsmodels
+**Prerequisites:** Python 3.8 or later, the project dataset (download from the CadetX portal), and the notebook and script files above. If the project uses SQL Server, configure the database connection separately.
 
-Visualization: Matplotlib, Seaborn, Power BI
+## Technology stack
 
-Database: SQL Server, T-SQL, SQLAlchemy
+| Category | Tools |
+|---|---|
+| Programming | Python |
+| Data analysis | Pandas, NumPy |
+| Machine learning | Scikit-learn, Statsmodels |
+| Visualisation | Matplotlib, Seaborn, Power BI |
+| Database | SQL Server, T-SQL, SQLAlchemy |
+| Development | Jupyter Notebook, Google Colab |
+| Version control | Git, GitHub |
 
-Development: Jupyter Notebook, Google Colab
+## Repository structure
 
-Version control: Git, GitHub
+```
+cadetx-warehouse-analytics/
+├── .github/workflows/update-readme-assets.yml
+├── assets/              # SVG charts and metrics.json (used by this README)
+├── data/                # Raw and cleaned data (large files are git-ignored)
+├── docs/                # validation_log.csv, data_dictionary.csv, results_table.md
+├── notebooks/           # week-01-eda.ipynb and later notebooks
+├── scripts/             # build_readme_assets.py
+├── src/                 # data_cleaning.py
+├── .gitignore
+├── README.md
+└── requirements.txt
+```
 
-Repository Structure
+Adjust this structure to match the files actually in your repository.
 
-cadetx-warehouse-analytics/ ├── data/ ├── notebooks/ │ └── week-01-eda.ipynb ├── src/ │ └── data_cleaning.py ├── README.md └── requirements.txt 
+## Project progress
 
-Adjust this structure to match the files actually present in your repository.
+Progress is tracked in the roadmap above and in the chart at the top of that section. Add validated charts, model results, and Power BI screenshots as the project develops.
 
-Project Progress
+## Author
 
-Track completed milestones using the roadmap above. Add validated charts, model results, and Power BI screenshots as the project develops.
+**Harsh Pandey** — Data Science Analyst
 
-Author
+- GitHub: [github.com/harshpandey97](https://github.com/harshpandey97)
+- LinkedIn: [linkedin.com/in/harsh-pandey-395a10237](https://www.linkedin.com/in/harsh-pandey-395a10237)
+- Email: harshpandey6012@gmail.com
 
-Harsh Pandey
-Data Science Analyst
+## License
 
-GitHub: https://github.com/harshpandey97
-
-LinkedIn: https://www.linkedin.com/in/harsh-pandey-395a10237
-
-Email: harshpandey6012@gmail.com
-
-License
-
-This project is intended to be released under the MIT License. See LICENSE if the license file exists in the repository.
-
+Released under the MIT License. Add a `LICENSE` file to the repository to make this official.
