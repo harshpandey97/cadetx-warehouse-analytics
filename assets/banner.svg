@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200" role="img" aria-label="CadetX Warehouse Analytics banner">
+<style>
+  @keyframes pop { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes shift { 0%,100% { transform: translateX(0); } 50% { transform: translateX(-120px); } }
+  .wave { animation: shift 8s ease-in-out infinite; }
+  .t1 { animation: pop 0.8s ease-out both; }
+  .t2 { animation: pop 0.8s ease-out 0.3s both; }
+  .t3 { animation: pop 0.8s ease-out 0.6s both; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+<defs>
+  <linearGradient id="g" x1="0" x2="1">
+    <stop offset="0" stop-color="#0969da"/>
+    <stop offset="1" stop-color="#8250df"/>
+  </linearGradient>
+</defs>
+<rect width="900" height="200" rx="16" fill="url(#g)"/>
+<path class="wave" d="M0 150 Q 120 120 240 150 T 480 150 T 720 150 T 960 150 V200 H0 Z" fill="#ffffff" opacity="0.12"/>
+<text class="t1" x="40" y="88" font-size="40" font-weight="700" fill="#ffffff" style="font-family: 'Segoe UI', Helvetica, Arial, sans-serif">CadetX Warehouse Analytics</text>
+<text class="t2" x="40" y="126" font-size="20" fill="#ffffff" style="font-family: 'Segoe UI', Helvetica, Arial, sans-serif">Supplier performance · Inventory health · Demand forecasting</text>
+<text class="t3" x="40" y="164" font-size="15" fill="#e6f0ff" style="font-family: 'Segoe UI', Helvetica, Arial, sans-serif">12-week applied data project · Python · SQL · Power BI</text>
+</svg>
